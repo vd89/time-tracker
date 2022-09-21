@@ -1,4 +1,4 @@
-import { ADD_TASK } from './_types';
+import { ADD_TASK, START_TIMER } from './_types';
 
 const INITIAL_STATE = {
   timer: {
@@ -18,7 +18,14 @@ export default function (state = INITIAL_STATE, { type, payload }) {
     case ADD_TASK:
       return {
         ...state,
-        tasks: state.tasks.concat(payload),
+        tasks: [payload, ...state.tasks],
+      };
+    case START_TIMER:
+      setTimeout(() => {
+        state.tasks[payload].timer.sec - 1;
+      }, 1000);
+      return {
+        ...state,
       };
     default:
       return state;

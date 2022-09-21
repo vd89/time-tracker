@@ -1,19 +1,23 @@
+import { Box, Container } from '@mui/material';
 import { Provider } from 'react-redux';
 
-import Timer from './components/atoms/Timer';
-import TimerButton from './components/atoms/TimerButton';
 import Layout from './components/layout';
 import InputTask from './components/molecules/InputTask';
+import MultipleTasks from './components/organisms/MultipleTasks';
 import store from './redux/store';
 
 function App() {
   return (
     <Provider store={store}>
       <Layout>
-        <h1>This is the working</h1>
-        <TimerButton label='James' color='primary' />
-        <Timer />
-        <InputTask />
+        <Container>
+          <InputTask style={{ margin: '10px 0px 0px 0px' }} />
+        </Container>
+        <Container>
+          <Box>
+            <MultipleTasks />
+          </Box>
+        </Container>
       </Layout>
     </Provider>
   );

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Box, Container, Grid } from '@mui/material';
+import { Card, CardContent, Grid } from '@mui/material';
 import { connect } from 'react-redux';
 
 import { addTask } from '../../redux/actions';
@@ -8,7 +8,7 @@ import InputText from '../atoms/InputText';
 import TimerButton from '../atoms/TimerButton';
 
 // const { log } = console;
-const InputTask = ({ title, timer, addTask }) => {
+const InputTask = ({ title, timer, addTask, tasks }) => {
   const [formData, setFormData] = useState({
     title: title,
     timer: timer,
@@ -22,9 +22,9 @@ const InputTask = ({ title, timer, addTask }) => {
     setFormData({ title, timer });
   };
   return (
-    <Container>
-      <Grid alignItems={'center'}>
-        <Box variant='form'>
+    <Grid alignItems={'center'} style={{ margin: '20px 0px 0px 0px' }}>
+      <Card>
+        <CardContent variant='form'>
           <form action='' onSubmit={onSubmitHandler(formData)}>
             <InputText
               fullWidth={true}
@@ -50,14 +50,15 @@ const InputTask = ({ title, timer, addTask }) => {
               label='Add Task with timer'
             />
           </form>
-        </Box>
-      </Grid>
-    </Container>
+        </CardContent>
+      </Card>
+    </Grid>
   );
 };
 
 const mapStateToProps = (state) => ({
   title: state.timerState.task.title,
   timer: state.timerState.task.timer,
+  tasks: state.tasks,
 });
 export default connect(mapStateToProps, { addTask })(InputTask);
