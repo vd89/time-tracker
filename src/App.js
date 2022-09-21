@@ -1,20 +1,22 @@
-import logo from "./logo.svg";
-import "./App.css";
+import { Provider } from 'react-redux';
+
+import Timer from './components/atoms/Timer';
+import TimerButton from './components/atoms/TimerButton';
+import Layout from './components/layout';
+import InputTask from './components/molecules/InputTask';
+import store from './redux/store';
 
 function App() {
-	return (
-		<div className='App'>
-			<header className='App-header'>
-				<img src={logo} className='App-logo' alt='logo' />
-				<p>
-          Edit <code>src/App.js</code> and save to reload.
-				</p>
-				<a className='App-link' href='https://reactjs.org' target='_blank' rel='noopener noreferrer'>
-          Learn React
-				</a>
-			</header>
-		</div>
-	);
+  return (
+    <Provider store={store}>
+      <Layout>
+        <h1>This is the working</h1>
+        <TimerButton label='James' color='primary' />
+        <Timer />
+        <InputTask />
+      </Layout>
+    </Provider>
+  );
 }
 
 export default App;
